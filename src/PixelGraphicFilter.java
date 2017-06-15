@@ -16,7 +16,7 @@ public class PixelGraphicFilter extends AreaFilter {
 	@Override
 	protected int calculate(int[] pixel, int[] maskPixel, int index, int width, int height) {
 		//System.out.println(Arrays.toString(pixel));
-		System.out.println(radius);
+		//System.out.println(radius);
 		if (index == 0) {
 			to = radius;
 		} else if (index % radius == 0) {
