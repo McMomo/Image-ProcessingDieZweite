@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class AreaFilter implements Filter {
 
+
 	public BufferedImage process(BufferedImage... images) {
 		BufferedImage image1, image2;
 		image1 = (images.length > 0) ? images[0] : null;
@@ -10,15 +11,17 @@ public abstract class AreaFilter implements Filter {
 		int width = images[0].getWidth();
 		int height = images[0].getHeight();
 		int index = 0;
-		int[] pixels = new int[width * height];
-		int[] maskPixels = new int[width * height];
+		System.out.println(width +  "  "+ height);
+		int[] pixels = new int[width * height ];
+		int[] maskPixels = new int[width * height ];
+		pixels = copy(image1, pixels, width, height);
+		maskPixels = copy(image2, maskPixels, width, height);
+
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if (image2 == null || image2.getRGB(i, j) == new Color(255, 255, 255).getRGB()) {
 
-					// pixels = copy(pixels, width, height);
-					// maskPixels = copy(maskPixels, width, height);
-
+					// Durchlaufen und färben des Radius fehlt
 					image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));
 					index++;
 				}
@@ -29,14 +32,18 @@ public abstract class AreaFilter implements Filter {
 
 	protected abstract int calculate(int[] pixel, int[] maskPixel, int index, int width, int height);
 
-	// public int [] copy(int [] array, int width, int height){
-	// for (int i = 0; i < height; i++){
-	// for (int j = 0; j < width; j++){
-	//
-	// }
-	// }
-	//
-	//
-	// return array;
-	// }
+	public int[] copy(BufferedImage image ,int[] array, int width, int height) {
+		int idx = 0;
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+
+			
+				System.out.println(image.getRGB(i, j)+ " | "+idx + "   " + array.length);
+				array[idx] = image.getRGB(i, j);
+					idx++;
+			}
+		}
+
+		return array;
+	}
 }
