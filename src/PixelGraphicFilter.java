@@ -4,21 +4,8 @@ import java.util.Arrays;
 
 public class PixelGraphicFilter extends AreaFilter {
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> master
-	private int radius;
-	
-	public PixelGraphicFilter(int radius){
-		this.radius = radius;	
-	}
-	@Override
-	public BufferedImage process(BufferedImage ... images) {
-		// TODO Auto-generated method stub
-		return null;
-=======
-	
+
+
 	private int from = 0;
 	private int to;
 	private int radius;
@@ -26,7 +13,7 @@ public class PixelGraphicFilter extends AreaFilter {
 	public PixelGraphicFilter(int radius){
 		this.radius = radius;
 		to = radius;
->>>>>>> Stashed changes
+
 	}
 	
 
@@ -34,7 +21,16 @@ public class PixelGraphicFilter extends AreaFilter {
 	protected int calculate(int[] pixel, int[] maskPixel, int index, int width, int height) {
 		System.out.println(Arrays.toString(pixel));
 		
-		
+
+		if (index == 0) {
+			to = radius;
+		} else {
+
+			from = width - to;
+			to = radius * index;
+
+		}
+
 		
 		//berechnung des durschnittswert
 		int valueNum = 0;

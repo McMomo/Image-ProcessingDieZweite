@@ -16,13 +16,7 @@ public abstract class AreaFilter implements Filter{
         	for(int j = 0; j < height; j++){
         		if(image2 == null || 
         				image2.getRGB(i, j) == new Color(255,255,255).getRGB()){
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-        			
->>>>>>> Stashed changes
-=======
->>>>>>> master
+
         			image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));
                 	
         		}
