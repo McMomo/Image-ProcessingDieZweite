@@ -12,7 +12,7 @@ public class PixelGraphicFilter extends AreaFilter {
 	
 	public PixelGraphicFilter(int radius){
 		this.radius = radius;
-		to = radius;
+		
 
 	}
 	
@@ -21,18 +21,19 @@ public class PixelGraphicFilter extends AreaFilter {
 	protected int calculate(int[] pixel, int[] maskPixel, int index, int width, int height) {
 		System.out.println(Arrays.toString(pixel));
 		
-
+		
 		if (index == 0) {
 			to = radius;
-		} else {
+		} else if (index%radius == 0) {
 
-			from = width - to;
-			to = radius * index;
+			from = to;
+			to += radius;
 
 		}
 
 		
 		//berechnung des durschnittswert
+		//also der Durschnittsfarbe aller Pixel + diesem Pixel;
 		int valueNum = 0;
 		Color valueCol;
 		for (int i = 0; from < to; from++ ){

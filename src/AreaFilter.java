@@ -1,32 +1,42 @@
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-public abstract class AreaFilter implements Filter{
-	
+public abstract class AreaFilter implements Filter {
+
 	public BufferedImage process(BufferedImage... images) {
 		BufferedImage image1, image2;
 		image1 = (images.length > 0) ? images[0] : null;
 		image2 = (images.length > 1) ? images[1] : null;
 		int width = images[0].getWidth();
-        int height = images[0].getHeight();
-        int index = 0;
-        int[] pixels = new int[width*height];
-        int[] maskPixels = new int[width*height];
-        for (int i = 0; i < width; i++ ) {
-        	for(int j = 0; j < height; j++){
-        		if(image2 == null || 
-        				image2.getRGB(i, j) == new Color(255,255,255).getRGB()){
+		int height = images[0].getHeight();
+		int index = 0;
+		int[] pixels = new int[width * height];
+		int[] maskPixels = new int[width * height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (image2 == null || image2.getRGB(i, j) == new Color(255, 255, 255).getRGB()) {
 
-        			image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));
-                	
-        		}
-        	}
-        }
-        return image1;
+					// pixels = copy(pixels, width, height);
+					// maskPixels = copy(maskPixels, width, height);
+
+					image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));
+					index++;
+				}
+			}
+		}
+		return image1;
 	}
 
-	
-	protected abstract int calculate(int [] pixel, int [] maskPixel, 
-			int index, int width, int height);
+	protected abstract int calculate(int[] pixel, int[] maskPixel, int index, int width, int height);
 
+	// public int [] copy(int [] array, int width, int height){
+	// for (int i = 0; i < height; i++){
+	// for (int j = 0; j < width; j++){
+	//
+	// }
+	// }
+	//
+	//
+	// return array;
+	// }
 }
