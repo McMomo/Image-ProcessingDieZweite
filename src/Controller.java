@@ -77,10 +77,10 @@ public class Controller {
 		filter.put("colorhistogram_green", new HistogramAnalyser());
 		filter.put("colorhistogram_blue", new HistogramAnalyser());
 		
-		//Filter [] warholFilter = new Filter[]{new ThresholdFilter(threshArr),new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192))};
-		//filter.put("warhol", new ChainFilter(warholFilter));
+		Filter [] warholFilter = new Filter[]{new ThresholdFilter(threshArr),new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192))};
+		filter.put("warhol", new ChainFilter(warholFilter));
 		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192)))); 
-		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
+		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
 
 		
 		return filter.get(chosenFilter);
