@@ -86,17 +86,17 @@ public class PixelGraphicFilter extends AreaFilter {
 		int green = 0, blue = 0, red = 0;
 
 		Color commonColor;
-		for (int i = 0; from < to; from++) {
-			green += ((pixel[from] >> 8) & 0xff);
-			blue += (pixel[from] >> 16) & 0xff;
-			red += (pixel[from] & 0xff);
+		for (int i = from; i < to; i++) {
+			green += ((pixel[i] >> 8) & 0xff);
+			blue += ((pixel[i]) & 0xff);
+			red += ((pixel[i] >> 16) & 0xff);
 
 		}
-		System.out.println("pre: " + red + " " + green + " " + blue);
+		//System.out.println("pre: " + red + " " + green + " " + blue);
 		red /= radius;
 		green /= radius;
 		blue /= radius;
-		System.out.println("after: " + red + " " + green + " " + blue);
+		//System.out.println("after: " + red + " " + green + " " + blue);
 		commonColor = new Color(red, green, blue);
 
 		return commonColor.getRGB();

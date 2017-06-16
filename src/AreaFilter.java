@@ -10,7 +10,7 @@ public abstract class AreaFilter implements Filter {
 		int width = images[0].getWidth();
 		int height = images[0].getHeight();
 		int index = 0;
-		System.out.println(width + "  " + height);
+		//System.out.println(width + "  " + height);
 		int[] pixels = new int[width * height];
 		int[] maskPixels = new int[width * height];
 		pixels = copy(image1, pixels, width, height);
@@ -25,6 +25,9 @@ public abstract class AreaFilter implements Filter {
 
 					// Durchlaufen und färben des Radius fehlt
 					image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));
+					
+					
+					
 					index++;
 				}
 			}
