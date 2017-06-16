@@ -1,7 +1,18 @@
 import java.awt.Color;
 
+
+/**
+ * 
+ * @author Moritz Bantleon, Dennis Schad
+ *
+ *	Setzt das bmp auf Schwarz/Weiß
+ */
 public class MonochromeFilter extends PixelFilter{
 
+	
+	/**
+	 * errechnen des Helligkeit & Rüggabe dieser als Farbe(Grauton)
+	 */
 	@Override
 	protected int calculate(int pixelColor) {
 		

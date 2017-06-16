@@ -1,5 +1,12 @@
 import java.awt.Color;
 
+/**
+ * 
+ * @author Moritz Bantleon, Dennis Schad
+ *
+ *
+ *
+ */
 public class ThresholdFilter extends PixelFilter{
 	
 	private Color greyBottom;

@@ -1,10 +1,10 @@
+
 /**
  * 
- * @author moritz
+ * @author Moritz Bantleon, Dennis Schad
  *
- *         Helligkeitswert wird berechnet. In einem Array,Helligkeitswert als
+ *Helligkeitswert wird berechnet. In einem Array,Helligkeitswert als
  *         Index, wird eine Stelle hochgezählt.
- * 
  */
 public class HistogramAnalyser extends PixelFilter {
 

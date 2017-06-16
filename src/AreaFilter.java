@@ -1,8 +1,13 @@
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-
+/**
+ * 
+ * @author Moritz Bantleon, Dennis Schad
+ *
+ *	Methode für Filter welche bestimmte gebite bearbeiten nicht nur einzelne Pixel
+ */
 public abstract class AreaFilter implements Filter {
-	//protected BufferedImage image1, image2;
+
 	public BufferedImage process(BufferedImage... images) {
 		BufferedImage image1, image2;
 		
@@ -38,6 +43,17 @@ public abstract class AreaFilter implements Filter {
 
 	protected abstract int calculate(int[] pixel, int[] maskPixel, int index, int width, int height);
 
+	
+	/**
+	 * kopieren eines bmps
+	 * 
+	 * 
+	 * @param image
+	 * @param array
+	 * @param width
+	 * @param height
+	 * @return
+	 */
 	public int[] copy(BufferedImage image, int[] array, int width, int height) {
 		int idx = 0;
 		for (int i = 0; i < width; i++) {

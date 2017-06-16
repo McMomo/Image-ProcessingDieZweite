@@ -1,8 +1,22 @@
+
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+
+/**
+ * 
+ * @author Moritz Bantleon, Dennis Schad
+ *
+ *	Überklasse aller Filter die einzelne Pixel verändern
+ *
+ */
 public abstract class PixelFilter implements Filter {
 	
+	/**
+	 * Durchgehen jedes Pixels des Bmp's.
+	 * aufruf der calculate Mehtode des entsprechenden Filters
+	 */
 	public BufferedImage process(BufferedImage ... images) {
 		BufferedImage image1, image2;
 		image1 = (images.length > 0) ? images[0] : null;
