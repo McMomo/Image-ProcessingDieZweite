@@ -62,8 +62,7 @@ public class Controller {
 		filter.put("pixel_40", new PixelGraphicFilter(40));
 		filter.put("pixel_60", new PixelGraphicFilter(60));
 		filter.put("histogram", new HistogramAnalyser());
-		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(64,64,64)))); //TODO Colorreplacement und Threshold Kombinieren
-		filter.put("colorhistogram_red", new HistogramAnalyser()); //TODO RGB Value für HistogramAnalyser
+		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4)))));
 		filter.put("colorhistogram_green", new HistogramAnalyser());
 		filter.put("colorhistogram_blue", new HistogramAnalyser());
 		
