@@ -2,9 +2,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public abstract class AreaFilter implements Filter {
-
+	protected BufferedImage image1, image2;
 	public BufferedImage process(BufferedImage... images) {
-		BufferedImage image1, image2;
+//		BufferedImage image1, image2;
 		image1 = (images.length > 0) ? images[0] : null;
 		image2 = (images.length > 1) ? images[1] : null;
 		int width = images[0].getWidth();
@@ -21,7 +21,7 @@ public abstract class AreaFilter implements Filter {
 		}
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (image2 == null || image2.getRGB(i, j) == new Color(255, 255, 255).getRGB()) {
+				if (image2 == null ||image2.getRGB(i, j) == new Color(255, 255, 255).getRGB()) {
 
 					// Durchlaufen und färben des Radius fehlt
 					image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));

@@ -38,19 +38,21 @@ public class HistogramAnalyser extends PixelFilter {
 			float starsCount = 0;
 			String stars = "";
 
-			starsCount = (100f/256f)*brightPic[i];
+			//starsCount = (100f/256f)*brightPic[i];
 
-			//starsCount = (100f / hundretPro) * brightPic[i];
+			starsCount = (100f / hundretPro) * brightPic[i];
 
 			// System.out.println(starsCount);
-			if (starsCount != 0) {
+			if (starsCount >= 1) {
 				for (int j = 0; j < starsCount; j++) {
 					stars += "*";
 				}
 
 				toPrint += i + ": " + stars + "\n";
-			} else {
+			} else if(starsCount < 1) {
 				rest+= "*";
+				
+				
 			}
 		}
 		toPrint += "\nUnter 1% oder 0% \n" + rest;
