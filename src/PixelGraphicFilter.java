@@ -1,9 +1,7 @@
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
 
 public class PixelGraphicFilter extends AreaFilter {
-
+	
 	private int from = 0;
 	private int to;
 	private int radius;

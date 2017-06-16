@@ -12,6 +12,9 @@ public class ChainFilter implements Filter {
 		this.aktFilter = filter1;
 	}
 	
+	/**
+	 * Rekursive Funktion zum verwenden zweier Filter auf das gleiche Bild
+	 */
 	@Override
 	public BufferedImage process(BufferedImage... images) {
 		BufferedImage image1, image2;

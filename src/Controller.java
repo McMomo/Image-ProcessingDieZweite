@@ -6,13 +6,18 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * 
+ * @version 0.8 not yet to be published
+ * @author Dennis Schad, Moritz Bantleon
+ *
+ */
 public class Controller {
 
     public static void main(String[] args) {
     	
     	BufferedImage image,mask = null;
-    	
+    	//liest das Bild ein und schreibt ein neues, nachdem der gewünschte Filter angewendet wurde
     	try {
 			image = ImageIO.read(new File(args[1]));
 			if(args[2].equalsIgnoreCase("-m")){
@@ -41,6 +46,11 @@ public class Controller {
         
     }
     
+    /**
+     * Zugriff auf die Map. gibt den in args gewünschten Filter zurück
+     * @param chosenFilter
+     * @return Filter Value
+     */
     public static Filter getFilter(String chosenFilter){
     	
 		int [] threshArr = {64, 128, 192};

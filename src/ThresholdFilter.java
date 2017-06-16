@@ -16,6 +16,9 @@ public class ThresholdFilter extends PixelFilter{
 		this.greyTop = new Color(greyValue[2], greyValue[2], greyValue[2]);
 	}
 
+	/**
+	 * Berechnet den Threshold anhand einer vorgegebenen Pixelhelligkeit
+	 */
 	@Override
 	protected int calculate(int pixelColor) {
 		if(greyTop == null || greyMid == null){

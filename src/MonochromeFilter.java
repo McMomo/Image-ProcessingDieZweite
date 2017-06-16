@@ -2,6 +2,9 @@ import java.awt.Color;
 
 public class MonochromeFilter extends PixelFilter{
 
+	/**
+	 * Berechnet den Grauwert eines Bildes und gibt ein Schwarz-Weiß Bild zurück
+	 */
 	@Override
 	protected int calculate(int pixelColor) {
 		

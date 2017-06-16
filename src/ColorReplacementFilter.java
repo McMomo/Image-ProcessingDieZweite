@@ -15,7 +15,10 @@ public class ColorReplacementFilter extends PixelFilter {
 		this.color1 = color1;
 		
 	}
-
+	
+	/**
+	 * berechnet über einen vorgegebenen Grauwert eine Helligkeit und gibt neue Farben zurück
+	 */
 	@Override
 	protected int calculate(int pixelColor) {
 		
@@ -35,20 +38,7 @@ public class ColorReplacementFilter extends PixelFilter {
 		} else {
 			return pixelColor;
 		}
-		
-//		int col1Bright = (color1.getBlue()+color1.getGreen()+color1.getRed())/3;
-//		int col2Bright = (color2.getBlue()+color2.getGreen()+color2.getRed())/3;
-//		int colBright = (col1Bright+col2Bright)/2;
-//		
-//		Color colValue = new Color(colBright,colBright, colBright);
-//		Color value = new Color (brightness,brightness,brightness);
-//		
-//		if (value.getRGB() >= colValue.getRGB()){
-//			return color1.getRGB();
-//		} else {
-//			return color2.getRGB();
-//		}
-//		
+
 		
 	
 	}
