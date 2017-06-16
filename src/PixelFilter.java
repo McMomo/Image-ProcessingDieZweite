@@ -13,7 +13,7 @@ public abstract class PixelFilter implements Filter {
 			for(int j = 0; j < height; j++){
         		if(image2 == null || 
         				image2.getRGB(i, j) == new Color(255,255,255).getRGB()){
-    				image1.setRGB(i, j, calculate(images[0].getRGB(i, j)));
+    				image1.setRGB(i, j, calculate(image1.getRGB(i, j)));
         		}
 
 			}

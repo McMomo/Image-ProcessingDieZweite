@@ -52,8 +52,8 @@ public class Controller {
 		filter.put("colorband_red", new ColorBandFilter("red"));
 		filter.put("colorband_green", new ColorBandFilter("green"));
 		filter.put("colorband_blue", new ColorBandFilter("blue"));
-		filter.put("treshold_128", new ThresholdFilter(128));
-		filter.put("treshold_192", new ThresholdFilter(192));
+		filter.put("threshold_128", new ThresholdFilter(128));
+		filter.put("threshold_192", new ThresholdFilter(192));
 		filter.put("multithreshold", new ThresholdFilter(threshArr));
 		filter.put("colorreplacement_64", new ColorReplacementFilter(new Color(64,64,64)));
 		filter.put("colorreplacement_128", new ColorReplacementFilter(new Color(128,128,128)));
@@ -62,7 +62,7 @@ public class Controller {
 		filter.put("pixel_40", new PixelGraphicFilter(40));
 		filter.put("pixel_60", new PixelGraphicFilter(60));
 		filter.put("histogram", new HistogramAnalyser());
-		filter.put("warhol", new ThresholdFilter(threshArr)); //TODO Colorreplacement und Threshold Kombinieren
+		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(64,64,64)))); //TODO Colorreplacement und Threshold Kombinieren
 		filter.put("colorhistogram_red", new HistogramAnalyser()); //TODO RGB Value für HistogramAnalyser
 		filter.put("colorhistogram_green", new HistogramAnalyser());
 		filter.put("colorhistogram_blue", new HistogramAnalyser());
