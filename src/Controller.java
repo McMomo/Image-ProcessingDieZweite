@@ -46,8 +46,8 @@ public class Controller {
 		int [] threshArr = {64, 128, 192};
 	
 		HashMap<String, Filter> filter = new HashMap<String, Filter>();
-		filter.put("blur_3", new BlurFilter(3));
-		filter.put("blur_5", new BlurFilter(5));
+		
+		//Pixel Filter
 		filter.put("monochrom", new MonochromeFilter());
 		filter.put("colorband_red", new ColorBandFilter("red"));
 		filter.put("colorband_green", new ColorBandFilter("green"));
@@ -58,14 +58,30 @@ public class Controller {
 		filter.put("colorreplacement_64", new ColorReplacementFilter(new Color(64,64,64)));
 		filter.put("colorreplacement_128", new ColorReplacementFilter(new Color(128,128,128)));
 		filter.put("colorreplacement_192", new ColorReplacementFilter(new Color(192,192,192)));
+		
+		//Area Filter
+		filter.put("blur_3", new BlurFilter(3));
+		filter.put("blur_5", new BlurFilter(5));
 		filter.put("pixel_20", new PixelGraphicFilter(20));
 		filter.put("pixel_40", new PixelGraphicFilter(40));
 		filter.put("pixel_60", new PixelGraphicFilter(60));
+		
+		//Histogramm
 		filter.put("histogram", new HistogramAnalyser());
-		filter.put("warhol", new ThresholdFilter(threshArr)); //TODO Colorreplacement und Threshold Kombinieren
-		filter.put("colorhistogram_red", new HistogramAnalyser()); //TODO RGB Value für HistogramAnalyser
+		
+		//Kombi-filter
+		
+		Filter [] redHist = new Filter[]{new ColorBandFilter("red"),new HistogramAnalyser()};
+		filter.put("colorhistogram_red", new ChainFilter(redHist));
+		//filter.put("colorhistogram_red", new ChainFilter(new ColorBandFilter("red"),new HistogramAnalyser())); //TODO RGB Value für HistogramAnalyser
 		filter.put("colorhistogram_green", new HistogramAnalyser());
 		filter.put("colorhistogram_blue", new HistogramAnalyser());
+		
+		Filter [] warholFilter = new Filter[]{new ThresholdFilter(threshArr),new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192))};
+		filter.put("warhol", new ChainFilter(warholFilter));
+		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192)))); 
+		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
+
 		
 		return filter.get(chosenFilter);
 		

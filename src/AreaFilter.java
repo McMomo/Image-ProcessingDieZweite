@@ -2,9 +2,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public abstract class AreaFilter implements Filter {
-	protected BufferedImage image1, image2;
+	//protected BufferedImage image1, image2;
 	public BufferedImage process(BufferedImage... images) {
-//		BufferedImage image1, image2;
+		BufferedImage image1, image2;
 		image1 = (images.length > 0) ? images[0] : null;
 		image2 = (images.length > 1) ? images[1] : null;
 		int width = images[0].getWidth();

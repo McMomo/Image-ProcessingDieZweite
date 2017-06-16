@@ -49,13 +49,13 @@ public class HistogramAnalyser extends PixelFilter {
 				}
 
 				toPrint += i + ": " + stars + "\n";
-			} else if(starsCount < 1) {
+			} else if(starsCount < 1 && starsCount > 0) {
 				rest+= "*";
 				
 				
 			}
 		}
-		toPrint += "\nUnter 1% oder 0% \n" + rest;
+		toPrint += "\nUnter 1%\n" + rest;
 		return toPrint;
 	}
 
