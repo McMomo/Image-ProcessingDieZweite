@@ -21,7 +21,7 @@ public abstract class AreaFilter implements Filter {
 		}
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (image2 == null || image2.getRGB(i, j) == new Color(255, 255, 255).getRGB()) {
+				if (image2 == null ||image2.getRGB(i, j) == new Color(255, 255, 255).getRGB()) {
 
 					// Durchlaufen und färben des Radius fehlt
 					image1.setRGB(i, j, calculate(pixels, maskPixels, index, width, height));

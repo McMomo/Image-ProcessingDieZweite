@@ -73,7 +73,9 @@ public class PixelGraphicFilter extends AreaFilter {
 		// commonColor = new Color(red, green, blue);
 		//
 		// return commonColor.getRGB();
-
+		
+		
+		
 		if (index == 0) {
 			to = radius;
 		} else if (index % radius == 0) {
