@@ -13,18 +13,25 @@ public class ChainFilter implements Filter {
 	private Filter filter1;
 	private Filter filter2;
 	private Filter aktFilter = filter1;
+	private Arraylist filters;
 
-	public ChainFilter(Filter filter1, Filter filter2) {
-		this.filter1 = filter1;
-		this.filter2 = filter2;
-		this.aktFilter = filter1;
+	public ChainFilter(Filter ... filter) {
+		this.filters = new Arraylist();
+		this.add(filter);
 	}
 
 	@Override
 	public BufferedImage process(BufferedImage... images) {
 		BufferedImage image1, image2;
 
-		image1 = (images.length > 0) ? images[0] : null;
+		
+		for(int f = 0; f < this.filters.size(); f++) {
+		    images[0] = filters.get(f).process(images);
+		}
+		
+		
+		
+		/*image1 = (images.length > 0) ? images[0] : null;
 		image2 = (images.length > 1) ? images[1] : null;
 
 		Filter imageOut = aktFilter;
@@ -39,12 +46,15 @@ public class ChainFilter implements Filter {
 			return process(image1);
 		} else {
 			return image1;
-		}
+		}*/
 
+		return images[0];
 	}
 
-	public void add(Filter filter) {
-		aktFilter = filter;
+	public void add(Filter ... filter) {
+		for(int i = 0; i < filter.length; i++){
+			this.filters.add(filter[i]);
+		}
 	}
 
 }
