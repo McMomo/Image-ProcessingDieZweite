@@ -3,6 +3,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -29,8 +31,10 @@ public class Controller {
 			if(args[2].equalsIgnoreCase("-m")){
 				mask = ImageIO.read(new File(args[3]));
 			}
-			
-			Filter imageOut = getFilter(args[0]);
+			if (args[0].equals("test")){
+				getFilter(args[0], args);
+			}else{
+			Filter imageOut = getFilter(args[0], args);
 			if(mask == null ){
 				image = imageOut.process(image);
 			} else {
@@ -44,7 +48,7 @@ public class Controller {
 			} else {
 				ImageIO.write(image, "bmp", new File(args[2]));
 			}
-
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -57,12 +61,15 @@ public class Controller {
      *
      *
      */
-    public static Filter getFilter(String chosenFilter){
+    public static Filter getFilter(String chosenFilter , String [] args){
+    	
     	
 		int [] threshArr = {64, 128, 192};
 	
 		HashMap<String, Filter> filter = new HashMap<String, Filter>();
-		
+    	
+    	
+    
 		//Pixel Filter
 		filter.put("monochrom", new MonochromeFilter());
 		filter.put("colorband_red", new ColorBandFilter("red"));
@@ -90,14 +97,66 @@ public class Controller {
 		filter.put("colorhistogram_green", new ChainFilter(new ColorBandFilter("green"),new HistogramAnalyser()));
 		filter.put("colorhistogram_blue", new ChainFilter(new ColorBandFilter("blue"),new HistogramAnalyser()));
 		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192)))); 
+		//Überschreiben des bildes ist das Problem
 		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
-
+		
+		if (chosenFilter.equalsIgnoreCase("test")){
+    		testFilter(filter, args);
+    		
+    	}
+    	
 		
 		return filter.get(chosenFilter);
 		
 		
 
 	}
+    
+    public static void testFilter(HashMap<String, Filter> filter, String [] args){
+    	BufferedImage image,mask = null;
+    	String outPutName ="";
+    	
+    	Iterator iterator = filter.entrySet().iterator();
+    	while (iterator.hasNext()) {
+    		 
+    	    Map.Entry aktFilter = (Map.Entry)iterator.next();
+        	
+        	try {
+    			image = ImageIO.read(new File(args[1]));
+    			if(args[2].equalsIgnoreCase("-m")){
+    				mask = ImageIO.read(new File(args[3]));
+    			}
+ 
+    			Filter imageOut = getFilter(aktFilter.getKey().toString(), args);
+    			//Filter imageOut = aktFilter.getKey();
+    			if(mask == null ){
+    				image = imageOut.process(image);
+    			} else {
+    				image = imageOut.process(image, mask);
+    			}
+
+    			System.out.println(imageOut.toString());
+    			
+    			if(args[2].equalsIgnoreCase("-m")){
+    			outPutName = args[4].toString();
+    				
+    			//ImageIO.write(image, "bmp", new File(outPutName + aktFilter.getKey().toString()+".bmp"));
+    			} else {
+    			outPutName = args[2].toString();
+    				
+    			//ImageIO.write(image, "bmp", new File(args[2] + aktFilter.getKey().toString()+".bmp"));
+    			}
+    			ImageIO.write(filter.get(aktFilter.getKey().toString()).process(image, mask), "bmp", new File("outPutImage" + "_" + aktFilter.getKey().toString() + ".bmp"));
+    			 
+    			
+    			
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    		 
+    	}
+    	
+    }
     
 }
 
