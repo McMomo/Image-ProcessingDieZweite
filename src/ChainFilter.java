@@ -2,6 +2,7 @@
 
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 /**
  * 
  * @author Moritz Bantleon, Dennis Schad
@@ -13,10 +14,10 @@ public class ChainFilter implements Filter {
 	private Filter filter1;
 	private Filter filter2;
 	private Filter aktFilter = filter1;
-	private Arraylist filters;
+	private ArrayList filters;
 
 	public ChainFilter(Filter ... filter) {
-		this.filters = new Arraylist();
+		this.filters = new ArrayList();
 		this.add(filter);
 	}
 
@@ -24,12 +25,14 @@ public class ChainFilter implements Filter {
 	public BufferedImage process(BufferedImage... images) {
 		BufferedImage image1, image2;
 
+		image1 = (images.length > 0) ? images[0] : null;
+		image2 = (images.length > 1) ? images[1] : null;
 		
 		for(int f = 0; f < this.filters.size(); f++) {
-		    images[0] = filters.get(f).process(images);
+		    images[0] = ((Filter) filters.get(f)).process(image1, image2);
 		}
 		
-		
+		 
 		
 		/*image1 = (images.length > 0) ? images[0] : null;
 		image2 = (images.length > 1) ? images[1] : null;

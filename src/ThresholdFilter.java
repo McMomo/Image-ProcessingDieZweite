@@ -31,9 +31,9 @@ public class ThresholdFilter extends PixelFilter{
 		}
 		int greyVal1 = 3*(255/4);
 		int greyVal2 = 2*(255/4);
-		int red = (pixelColor & 0xff);
 		int green = ((pixelColor >> 8) & 0xff);
-		int blue = (pixelColor >> 16) & 0xff;
+		int blue = ((pixelColor) & 0xff);
+		int red = ((pixelColor  >> 16) & 0xff);
 		
 		int brightness = (green + blue + red) /3;
 		

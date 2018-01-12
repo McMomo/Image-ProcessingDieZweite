@@ -30,6 +30,8 @@ public class ColorBandFilter extends PixelFilter{
 		}
 		if(channel.equals("red")){
 			return new Color((pixelColor & 0xff), 0, 0).getRGB();
-		} else return 0;
+		} else {
+			return 0;
+		}
 	}
 }

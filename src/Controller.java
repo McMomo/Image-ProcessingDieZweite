@@ -96,9 +96,12 @@ public class Controller {
 		filter.put("colorhistogram_red", new ChainFilter(new ColorBandFilter("red"),new HistogramAnalyser()));
 		filter.put("colorhistogram_green", new ChainFilter(new ColorBandFilter("green"),new HistogramAnalyser()));
 		filter.put("colorhistogram_blue", new ChainFilter(new ColorBandFilter("blue"),new HistogramAnalyser()));
-		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(64,64,64)), new ColorReplacementFilter(new Color(128,128,128)),new ColorReplacementFilter(new Color(192,192,192)))); 
+		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(255,255,255)), new ColorReplacementFilter(new Color(2*(255/4),2*(255/4),2*(255/4))),new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
 		//Überschreiben des bildes ist das Problem
-		filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
+		//filter.put("warhol", new ChainFilter(new ThresholdFilter(threshArr), new ColorReplacementFilter(new Color(3*(255/4),3*(255/4),3*(255/4))))); 
+		filter.put("brightness_100", new BrightnessFilter(100));
+		filter.put("brightness_minus100", new BrightnessFilter(-100));
+		
 		
 		if (chosenFilter.equalsIgnoreCase("test")){
     		testFilter(filter, args);
@@ -128,24 +131,12 @@ public class Controller {
     			}
  
     			Filter imageOut = getFilter(aktFilter.getKey().toString(), args);
-    			//Filter imageOut = aktFilter.getKey();
-    			if(mask == null ){
-    				image = imageOut.process(image);
-    			} else {
-    				image = imageOut.process(image, mask);
-    			}
+    			
 
     			System.out.println(imageOut.toString());
+    			//System.out.println(aktFilter.getKey().toString());
     			
-    			if(args[2].equalsIgnoreCase("-m")){
-    			outPutName = args[4].toString();
-    				
-    			//ImageIO.write(image, "bmp", new File(outPutName + aktFilter.getKey().toString()+".bmp"));
-    			} else {
-    			outPutName = args[2].toString();
-    				
-    			//ImageIO.write(image, "bmp", new File(args[2] + aktFilter.getKey().toString()+".bmp"));
-    			}
+    		
     			ImageIO.write(filter.get(aktFilter.getKey().toString()).process(image, mask), "bmp", new File("outPutImage" + "_" + aktFilter.getKey().toString() + ".bmp"));
     			 
     			
